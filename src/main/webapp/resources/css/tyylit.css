@@ -1,0 +1,28 @@
+
+
+table.data {
+    width: 100%;
+    border-collapse: collapse;
+    border-bottom:0;
+}
+
+table.data th,
+table.data td {
+    padding: 5px;
+    text-align: left;
+    font-family: Arial, Verdana, sans-serif;
+    border: 4px solid #000;
+}
+
+table.data th {
+    background-color: #ddd;
+    color: #BB0000;
+}
+
+table.data tr.odd {
+    background-color: #DDFFFF;
+}
+
+table.data tr.even {
+    background-color: #FBFBFB;
+}

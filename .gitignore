@@ -1,0 +1,15 @@
+/target
+*target*
+*.class
+*.jar
+*.war
+*.ear
+bin/
+build/
+.project
+.classpath
+.settings
+pom.properties
+
+
+
