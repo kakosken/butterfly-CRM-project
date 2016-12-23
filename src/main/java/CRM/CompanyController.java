@@ -53,7 +53,7 @@ public class CompanyController {
 	}
 	
 
-	public String initialize() {
-		return null;
+	public void initialize() {
+		crmEjb.init();
 	}
 }

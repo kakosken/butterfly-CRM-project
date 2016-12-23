@@ -26,6 +26,23 @@ public class CRMejb {
 		testi.setPassword("testisalasana");
 		testi.setUserName("TestiUserName");
 		em.persist(testi);
+		
+		Customer testiCustomer = new Customer();
+		testiCustomer.setName("Arttu Asiakas");
+		testiCustomer.setEmail("arttu.asiakas@testiyritys.com");
+		em.persist(testiCustomer);
+		
+		Customer testiCustomer2 = new Customer();
+		testiCustomer2.setName("Testi Asiakas");
+		testiCustomer2.setPhone("12345566");
+		em.persist(testiCustomer2);
+		
+		Company testiCompany = new Company();
+		testiCompany.setBusinessId("1234567-1");
+		testiCompany.setName("Testi Yritys Oy");
+		testiCompany.setWebPage("wwww.testiyriys.com");
+		em.persist(testiCompany);
+		
 	}
 	
 
