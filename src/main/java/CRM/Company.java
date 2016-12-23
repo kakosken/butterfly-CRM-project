@@ -23,6 +23,7 @@ public class Company {
 	@Id
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 private long id;
+
 	
     private String businessId;
     private String name; 
