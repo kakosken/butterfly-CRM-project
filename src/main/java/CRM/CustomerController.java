@@ -51,5 +51,9 @@ public class CustomerController {
 		return crmEjb.getCustomers();
 	}
 	
+	public void initialize() {
+		crmEjb.init();
+	}
+	
 	
 }

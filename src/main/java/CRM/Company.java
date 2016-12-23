@@ -11,7 +11,6 @@ import javax.persistence.*;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import jpaesim.Kauppa;
 
 @ManagedBean
 @RequestScoped
@@ -21,8 +20,11 @@ import jpaesim.Kauppa;
 
 public class Company {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	 @GeneratedValue(strategy = GenerationType.AUTO)
+	 private long id;
+
+	
     private String businessId;
     private String name; 
     private String phone;
@@ -31,12 +33,12 @@ public class Company {
     private String town;
     private String webPage;
     
-   // @ManyToOne 
-   // private List<Customer> asiakkaat;
+  // @ManyToOne 
+  // private List<Customer> asiakkaat;
     
-	// Määrittelee tuote - kauppa suhteen 1 - n 
-	//@OneToMany  ( targetEntity=Kauppa.class )
-//	private List<Kauppa> kaupat;
+	// Määrittelee company - customer suhteen 1 - n 
+	@OneToMany  ( targetEntity=Customer.class )
+	private List<Customer> customers;
     
     public Company (){
 		super();
@@ -112,6 +114,20 @@ public class Company {
 	public void setWebPage(String webPage) {
 		this.webPage = webPage;
 	}
+	
+	
+
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+
+
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
+	}
+
+
 
 	@Override
 	public String toString() {
