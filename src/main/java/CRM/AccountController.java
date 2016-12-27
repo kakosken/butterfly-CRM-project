@@ -6,7 +6,9 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 
 /*
@@ -40,6 +42,7 @@ public class AccountController {
 	
 	public void init(){
 		crmEjb.init();
+		
 	}
 	
 	
@@ -59,9 +62,16 @@ public class AccountController {
 		return "index";
 	}
 	
-	public void deleteAccount(){
+	public void deleteAccount(Account a){
 		
-		//poista käyttäjätili
+		long id = a.getId();
+		try{
+			  System.out.println("Deleted account (id)= "+ a);
+			  crmEjb.deleteAccount(id);
+		}catch (Exception e){
+			e.printStackTrace();
+			System.out.println("Poistaminen ei onnistunut");
+		}
 	}
 	
 

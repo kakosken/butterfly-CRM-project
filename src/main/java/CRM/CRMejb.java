@@ -59,11 +59,12 @@ public class CRMejb {
 		
 	}
 	
-	public void deleteAccount(Account account){
+	public void deleteAccount(long id){
 		//käyttäjätilin poistaminen
 		try{
-			em.remove(account);
-			System.out.println("Account deleted: "+account);
+			Account poistettava = em.find(Account.class, id);
+			em.remove(poistettava);
+			System.out.println("Account deleted: "+poistettava);
 		}catch (Exception e){
 			System.out.println("Käyttäjätilin poistaminen ei onnistunut");
 			e.printStackTrace();
