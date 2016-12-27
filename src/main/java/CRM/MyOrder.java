@@ -11,23 +11,24 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 @Entity
-@NamedQuery(name = "searchAllOrders", query = "SELECT order from Order order") 
-public class Order {
-//  private static final long serialVersionUID = 1L;
+@NamedQuery(name = "searchAllOrders", query = "SELECT order from MyOrder order") 
+public class MyOrder implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @ManyToOne
+	private Company company;
+    
     private enum state{
     	NEW, DELIVERED
     }; 
+
     private String salesPerson;
-	public Order(Long id, String salesPerson) {
-		super();
-		this.id = id;
-		this.salesPerson = salesPerson;
-	}
-    
-    public Order() {
+
+
+	public MyOrder() {
 		super();
 	}
 
@@ -38,6 +39,8 @@ public class Order {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	
 
 	public String getSalesPerson() {
 		return salesPerson;
@@ -46,14 +49,21 @@ public class Order {
 	public void setSalesPerson(String salesPerson) {
 		this.salesPerson = salesPerson;
 	}
+	
+	
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", salesPerson=" + salesPerson + "]";
+		return "MyOrder [id=" + id + ", company=" + company + ", salesPerson="
+				+ salesPerson + "]";
 	}
-    
-    
-    
-    
+
 
 }

@@ -4,7 +4,7 @@ package CRM;
 
 import java.util.ArrayList;
 
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
@@ -17,14 +17,19 @@ public class OrderController {
 	@EJB
 	private CRMejb crmEjb;
 
-	@ManagedProperty(value = "#{order}")
-	private Order order;
+	@ManagedProperty(value = "#{myorder}")
+	private MyOrder order;
 	
-	public Order getOrder() {
+	public OrderController() {
+		// testidatan alustus?
+
+	}
+	
+	public MyOrder getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(MyOrder order) {
 		this.order = order;
 	}
 	
@@ -33,14 +38,10 @@ public class OrderController {
 
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		
-		Order ord = (Order) facesContext.getExternalContext().getRequestMap().get("order");
-		// save order and set facesMessage if error
-
+		crmEjb.saveOrder(order);
 		
 		FacesMessage facesMessage = new FacesMessage(viesti);
 		facesContext.addMessage(viesti, facesMessage);
-		
-		crmEjb.saveOrder(ord);
 
 		return "index";
 	}
@@ -48,15 +49,14 @@ public class OrderController {
 	
 	
 	
-	public  ArrayList<Order> listOrders() {
-		return (ArrayList<Order>) crmEjb.getOrders();
+	public  ArrayList<MyOrder> listOrders() {
+		return (ArrayList<MyOrder>) crmEjb.getOrders();
 	} 
 	
 	
 
-	public String initializeOrder() {
+	public void initializeMyOrder() {
 		crmEjb.init();
-		return null;
 	}
 
 }
