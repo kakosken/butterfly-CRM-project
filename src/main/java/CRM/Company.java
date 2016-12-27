@@ -33,12 +33,6 @@ public class Company {
     private String town;
     private String webPage;
     
-  // @ManyToOne 
-  // private List<Customer> asiakkaat;
-    
-	// Määrittelee company - customer suhteen 1 - n 
-	@OneToMany  ( targetEntity=Customer.class )
-	private List<Customer> customers;
     
     public Company (){
 		super();
@@ -117,7 +111,7 @@ public class Company {
 	
 	
 
-	public List<Customer> getCustomers() {
+	/*public List<Customer> getCustomers() {
 		return customers;
 	}
 
@@ -125,7 +119,7 @@ public class Company {
 
 	public void setCustomers(List<Customer> customers) {
 		this.customers = customers;
-	}
+	}*/
 
 
 
