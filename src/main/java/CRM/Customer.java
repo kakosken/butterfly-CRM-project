@@ -5,12 +5,14 @@ import java.io.Serializable;
 
 
 
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 
 
@@ -24,6 +26,7 @@ public class Customer implements Serializable {
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 private long id;
 	
+	@ManyToOne
 	private Company company;
 	
 	private String name;
@@ -35,6 +38,8 @@ public class Customer implements Serializable {
 	private enum status {
 		CONTACT, CUSTOMER, ONGOING, LEAD, OLD_CUSTOMER, RETIRED
 	}
+	
+
 	
 	public Customer(){
 		
@@ -78,6 +83,15 @@ public class Customer implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 	@Override
