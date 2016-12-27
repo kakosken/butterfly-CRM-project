@@ -34,6 +34,7 @@ public class Company {
     private String webPage;
     
     
+    
     public Company (){
 		super();
 	}
@@ -109,18 +110,6 @@ public class Company {
 		this.webPage = webPage;
 	}
 	
-	
-
-	/*public List<Customer> getCustomers() {
-		return customers;
-	}
-
-
-
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
-	}*/
-
 
 
 	@Override
