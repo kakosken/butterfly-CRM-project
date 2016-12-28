@@ -10,9 +10,15 @@
 		
 		
 		<class>CRM.Company</class>
+<<<<<<< HEAD
 		<class>CRM.Order</class>
 		<class>CRM.OrderObject</class>
 		<class>CRM.Customer</class>  
+=======
+		<class>CRM.MyOrder</class>
+		<class>CRM.OrderObject</class>
+		<class>CRM.Customer</class>
+>>>>>>> a75d007afddfd26b9d26c3bb7468248387c24b25
 		<class>CRM.Account</class>
 
 		<properties>

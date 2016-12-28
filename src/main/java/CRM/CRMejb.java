@@ -48,7 +48,16 @@ public class CRMejb {
 		testiCustomer2.setCompany(testiCompany);
 		em.persist(testiCustomer2);
 		
+		MyOrder testiOrder = new MyOrder();
+		testiOrder.setSalesPerson("Minttu Myyjä");
+		testiOrder.setCompany(testiCompany);
+		em.persist(testiOrder);
 		
+		MyOrder testiOrder2 = new MyOrder();
+		testiOrder2.setSalesPerson("Matti Myyntimies");
+		testiOrder2.setCompany(testiCompany);
+		em.persist(testiOrder2);
+		 
 		
 	}
 	
@@ -109,24 +118,26 @@ public class CRMejb {
 
 	}
 
-	//tallenna tilaus
-	public void saveOrder(Order order) {
-		try {
-			em.persist(order);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+	//Uuden tilaukse lisääminen
+	public void saveOrder(MyOrder order) {
+			try{
+				em.persist(order);
+				System.out.println("Uusi tilaus tallennettu: "+order);
+			}catch (Exception e){
+				e.printStackTrace();
+				System.out.println("Uuden tilauksen lisääminen ei onnistunut! "+order);
+			}
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Order> getOrders() {
-		List<Order> orders = null; 
+	public List<MyOrder> getOrders() {
+		List<MyOrder> orders = null; 
 		// get all orders from the database
 		orders = em.createNamedQuery("searchAllOrders").getResultList();
 		return orders;
 	}
 	
+
 
 	
 	public void saveOrderObject(OrderObject orderObject) {
@@ -137,6 +148,9 @@ public class CRMejb {
 		}
 		
 	}
+
+	
+
 	
 	@SuppressWarnings("unchecked")
 	public List<OrderObject> getOrderObjects() {
