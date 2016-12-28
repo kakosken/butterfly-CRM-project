@@ -48,10 +48,16 @@ public class OrderController {
 	
 	
 	
-	
+	//kaikki tilaukset kannasta
 	public  ArrayList<MyOrder> listOrders() {
 		return (ArrayList<MyOrder>) crmEjb.getOrders();
 	} 
+	
+	//yrityksen tilaukset kannasta
+	public  ArrayList<MyOrder> listOrdersByCompany(Long companyId) {
+		return (ArrayList<MyOrder>) crmEjb.getOrdersByCompany(companyId);
+	}
+	
 	
 	
 
