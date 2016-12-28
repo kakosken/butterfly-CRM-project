@@ -4,6 +4,7 @@ package CRM;
 
 import java.io.Serializable;
 
+
 import javax.persistence.*;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
