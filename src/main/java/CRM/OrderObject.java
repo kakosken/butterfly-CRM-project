@@ -84,6 +84,14 @@ public class OrderObject {
 				+ price + ", name=" + name + ", order=" + order + "]";
 	}
 
+	public MyOrder getOrder() {
+		return order;
+	}
+
+	public void setOrder(MyOrder order) {
+		this.order = order;
+	}
+
 
     
     

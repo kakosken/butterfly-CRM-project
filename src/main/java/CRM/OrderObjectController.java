@@ -60,9 +60,14 @@ public class OrderObjectController {
 		return crmEjb.getOrderObjectsByState(state).toString();
 	}
 	
+	public  String searchByCompanyId(long companyId) {
+		return crmEjb.getOrderObjectsByCompany(companyId).toString();
+	}
+	
 
 	public String initializeOrderObject() {
-		return null;
+		crmEjb.init();
+		return "";
 	}
 
 

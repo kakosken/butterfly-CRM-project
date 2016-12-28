@@ -57,6 +57,18 @@ public class CRMejb {
 		testiOrder2.setSalesPerson("Matti Myyntimies");
 		testiOrder2.setCompany(testiCompany);
 		em.persist(testiOrder2);
+		
+		OrderObject testituote = new OrderObject();
+		testituote.setName("testituote");
+		testituote.setOrder(testiOrder);
+		testituote.setPrice(50.0);
+		em.persist(testituote);
+		
+		OrderObject testituote2 = new OrderObject();
+		testituote.setName("testituote2");
+		testituote.setOrder(testiOrder2);
+		testituote.setPrice(66.0);
+		em.persist(testituote2);
 		 
 		
 	}
@@ -192,10 +204,20 @@ public class CRMejb {
 	
 	@SuppressWarnings("unchecked")
 	public List<OrderObject> getOrderObjectsByState(String state) {
-		//Haetaan tuotteita tuotteen nimen perusteella
+		//Haetaan tuotteita tuotteen tilan perusteella
 		TypedQuery<OrderObject> query = em.createQuery(
 		        "SELECT o FROM OrderObject o WHERE o.state LIKE :name", OrderObject.class);
 		    List<OrderObject> tuloslista = query.setParameter("name", state).getResultList();
+
+		return tuloslista;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<OrderObject> getOrderObjectsByCompany(long companyId) {
+		//Haetaan tuotteita tuotteen yrityksen perusteella
+		TypedQuery<OrderObject> query = em.createQuery(
+		        "SELECT o FROM OrderObject o WHERE o.order.company.id LIKE :id", OrderObject.class);
+		    List<OrderObject> tuloslista = query.setParameter("id", companyId).getResultList();
 
 		return tuloslista;
 	}
