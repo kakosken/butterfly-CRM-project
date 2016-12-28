@@ -127,12 +127,28 @@ public class CRMejb {
 			}
 	}
 	
+	
+	// get all orders from the database
 	@SuppressWarnings("unchecked")
 	public List<MyOrder> getOrders() {
 		List<MyOrder> orders = null; 
-		// get all orders from the database
 		orders = em.createNamedQuery("searchAllOrders").getResultList();
 		return orders;
+	}
+	
+	// yrityksen tilaukset tietokannasta
+	@SuppressWarnings("unchecked")
+	public List<MyOrder> getOrdersByCompany(Long companyId) {
+		List<MyOrder> orders = null; 
+		orders = em.createNamedQuery("searchOrdersByCompany").setParameter("yritysId", companyId).getResultList();
+		// testing
+		System.out.println("***********searchOrdersByCompany  ********** ");
+				for (MyOrder o : orders) {
+		            System.out.println(o.getId());
+		            System.out.println(o.getSalesPerson());
+				}
+		return orders;
+		
 	}
 	
 	
