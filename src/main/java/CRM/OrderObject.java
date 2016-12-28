@@ -14,7 +14,7 @@ import javax.faces.bean.RequestScoped;
 @Entity
 
 
-@NamedQuery(name = "searchAllOrderObjects", query = "SELECT orderObject from OrderObject orderObject") 
+@NamedQuery(name = "searchAllOrderObjects", query = "SELECT orderObject from OrderObject orderObject")
 
 
 public class OrderObject {

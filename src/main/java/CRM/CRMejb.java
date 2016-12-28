@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 
 
 
@@ -125,6 +127,8 @@ public class CRMejb {
 		return orders;
 	}
 	
+
+	
 	public void saveOrderObject(OrderObject orderObject) {
 		try {
 			em.persist(orderObject);
@@ -135,12 +139,22 @@ public class CRMejb {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<OrderObject> getOrdersObjects() {
+	public List<OrderObject> getOrderObjects() {
 		List<OrderObject> orderObjects = null; 
 		// get all orders from the database
 		orderObjects = em.createNamedQuery("searchAllOrderObjects").getResultList();
 		return orderObjects;
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<OrderObject> getOrderObjects(String name) {
+		//Haetaan tuotteita tuotteen nimen perusteella
+		TypedQuery<OrderObject> query = em.createQuery(
+		        "SELECT o FROM OrderObject o WHERE o.name LIKE :name", OrderObject.class);
+		    List<OrderObject> tuloslista = query.setParameter("name", name).getResultList();
+
+		return tuloslista;
 	}
 	
 	//tallentaa yrityksen tiedot
