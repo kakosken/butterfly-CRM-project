@@ -162,11 +162,21 @@ public class CRMejb {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<OrderObject> getOrderObjects(String name) {
+	public List<OrderObject> getOrderObjectsByName(String name) {
 		//Haetaan tuotteita tuotteen nimen perusteella
 		TypedQuery<OrderObject> query = em.createQuery(
 		        "SELECT o FROM OrderObject o WHERE o.name LIKE :name", OrderObject.class);
 		    List<OrderObject> tuloslista = query.setParameter("name", name).getResultList();
+
+		return tuloslista;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<OrderObject> getOrderObjectsByState(String state) {
+		//Haetaan tuotteita tuotteen nimen perusteella
+		TypedQuery<OrderObject> query = em.createQuery(
+		        "SELECT o FROM OrderObject o WHERE o.state LIKE :name", OrderObject.class);
+		    List<OrderObject> tuloslista = query.setParameter("name", state).getResultList();
 
 		return tuloslista;
 	}

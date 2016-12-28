@@ -41,7 +41,7 @@ public class OrderObjectController {
 		FacesMessage facesMessage = new FacesMessage(viesti);
 		facesContext.addMessage(null, facesMessage);
 		crmEjb.saveOrderObject(orderObject);
-		return "tuotteet";
+		return "index";
 		
 		
 	}
@@ -53,7 +53,11 @@ public class OrderObjectController {
 	}
 	
 	public  String searchByName(String name) {
-		return crmEjb.getOrderObjects(name).toString();
+		return crmEjb.getOrderObjectsByName(name).toString();
+	}
+	
+	public  String searchByState(String state) {
+		return crmEjb.getOrderObjectsByState(state).toString();
 	}
 	
 
