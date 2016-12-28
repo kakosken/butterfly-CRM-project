@@ -2,6 +2,7 @@ package CRM;
 
 /* Terhi Järvenpää */
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.*;
 import javax.faces.bean.ManagedBean;
@@ -29,7 +30,8 @@ public class MyOrder implements Serializable {
     }; 
 
     private String salesPerson;
-
+    private Date deliveryDate;
+    private String deliveryPlace;
 
 	public MyOrder() {
 		super();
@@ -67,6 +69,24 @@ public class MyOrder implements Serializable {
 		return "MyOrder [id=" + id + ", company=" + company + ", salesPerson="
 				+ salesPerson + "]";
 	}
+
+	public Date getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(Date deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+
+	public String getDeliveryPlace() {
+		return deliveryPlace;
+	}
+
+	public void setDeliveryPlace(String deliveryPlace) {
+		this.deliveryPlace = deliveryPlace;
+	}
+	
+	
 
 
 }
