@@ -23,19 +23,15 @@
 				<f:facet name="header">Name</f:facet>
                  #{t.name}
             </h:column>
-      <!--       <h:column headerstyleClass="first">
-				<f:facet name="header">Email</f:facet>
-               #{t.email}  
-            </h:column>  -->
             <h:column headerstyleClass="first">
 				<f:facet name="header">Käyttäjänimi</f:facet>
 					#{t.userName}
             </h:column>
-      <!--   <h:column headerstyleClass="first">
-				<f:facet name="header">Ostoskoriin</f:facet>
-                    <h:commandLink action="#{tuoteController.addCart(t)}" value="Lisää" />
+      	   <h:column headerstyleClass="first">
+				<f:facet name="header">Tilin hallinta</f:facet>
+                    <h:commandLink action="#{accountController.deleteAccount(t)}" value="Poista käyttäjä" />
             </h:column>
-        -->    
+        
             
 		</h:dataTable>
 		
