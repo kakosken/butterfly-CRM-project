@@ -4,6 +4,7 @@ package CRM;
 
 import java.io.Serializable;
 
+
 import javax.persistence.*;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -14,7 +15,7 @@ import javax.faces.bean.RequestScoped;
 @Entity
 
 
-@NamedQuery(name = "searchAllOrderObjects", query = "SELECT orderObject from OrderObject orderObject") 
+@NamedQuery(name = "searchAllOrderObjects", query = "SELECT orderObject from OrderObject orderObject")
 
 
 public class OrderObject {
@@ -23,11 +24,18 @@ public class OrderObject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private enum state{
-    	INSTORE, DELIVERED
-    }; 
+    private String state;
+   // private enum state{
+    //	INSTORE, DELIVERED
+ //   }; 
     private double price;
     private String name;
+    
+    @ManyToOne
+    private MyOrder order;
+    
+   // @ManyToOne
+  	//private Company company;
 	
     public OrderObject(Long id, double price, String name) {
 		this.id = id;
@@ -55,6 +63,14 @@ public class OrderObject {
 		this.price = price;
 	}
 
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -65,9 +81,19 @@ public class OrderObject {
 
 	@Override
 	public String toString() {
-		return "OrderObject [id=" + id + ", price=" + price + ", name=" + name
-				+ "]";
+		return "OrderObject [id=" + id + ", state=" + state + ", price="
+				+ price + ", name=" + name + ", order=" + order + "]";
 	}
+
+	public MyOrder getOrder() {
+		return order;
+	}
+
+	public void setOrder(MyOrder order) {
+		this.order = order;
+	}
+
+
     
     
 	

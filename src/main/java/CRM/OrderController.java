@@ -4,7 +4,7 @@ package CRM;
 
 import java.util.ArrayList;
 
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedProperty;
@@ -16,15 +16,22 @@ public class OrderController {
 	
 	@EJB
 	private CRMejb crmEjb;
-
-	@ManagedProperty(value = "#{order}")
-	private Order order;
 	
-	public Order getOrder() {
+	private OrderObjectController orderObjectc;
+
+	@ManagedProperty(value = "#{myorder}")
+	private MyOrder order;
+	
+	public OrderController() {
+		// testidatan alustus?
+
+	}
+	
+	public MyOrder getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(MyOrder order) {
 		this.order = order;
 	}
 	
@@ -33,30 +40,63 @@ public class OrderController {
 
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		
-		Order ord = (Order) facesContext.getExternalContext().getRequestMap().get("order");
-		// save order and set facesMessage if error
-
+		crmEjb.saveOrder(order);
 		
 		FacesMessage facesMessage = new FacesMessage(viesti);
 		facesContext.addMessage(viesti, facesMessage);
-		
-		crmEjb.saveOrder(ord);
 
 		return "index";
 	}
 	
 	
 	
-	
-	public  ArrayList<Order> listOrders() {
-		return (ArrayList<Order>) crmEjb.getOrders();
+	//kaikki tilaukset kannasta
+	public  ArrayList<MyOrder> listOrders() {
+		return (ArrayList<MyOrder>) crmEjb.getOrders();
 	} 
 	
+	//yrityksen tilaukset kannasta
+	public  ArrayList<MyOrder> listOrdersByCompany(Long companyId) {
+		return (ArrayList<MyOrder>) crmEjb.getOrdersByCompany(companyId);
+	}
+	
+	//tilaukset tilauspäivän mukaan
+	public  ArrayList<MyOrder> listOrdersByDate(String date) {
+		return (ArrayList<MyOrder>) crmEjb.getOrdersByDate(date);
+	}
+	
+	//tilaukset toimituspaikan mukaan
+	public  ArrayList<MyOrder> listOrdersByPlace(String place) {
+		return (ArrayList<MyOrder>) crmEjb.getOrdersByPlace(place);
+	}
+	
+/*	public String getOrdersByDate(String day,String month, String year){
+		public  String searchByOrderDate(String day, String month, String year) {
+			int d = 0;
+			int m = 0;
+			int y = 0;
+			try{
+				d = Integer.parseInt(day);
+				m = Integer.parseInt(month);
+				y = Integer.parseInt(year);
+				
+			}catch(Exception e){
+				e.printStackTrace();
+				System.out.println("Päivämäärän annettu väärässä muodossa");
+			}
+			//Date deliveryDate = (Date) new GregorianCalendar(y, m, d).getTime();
+			//Date deliveryDate = Calendar.getInstance().set(y, m - 1, d, 0, 0);
+			//return crmEjb.getOrderObjectsByOrderDate(deliveryDate).toString();
+		}
+		
+	}
+	
+	*/
+
 	
 
-	public String initializeOrder() {
+	public void initializeMyOrder() {
 		crmEjb.init();
-		return null;
 	}
 
 }

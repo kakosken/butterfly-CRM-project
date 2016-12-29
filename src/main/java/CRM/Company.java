@@ -5,6 +5,7 @@ package CRM;
 
 /* Terhi Järvenpää */
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -33,6 +34,8 @@ public class Company {
     private String town;
     private String webPage;
     
+    @OneToMany(mappedBy = "company")
+    private ArrayList<Customer> customers;
     
     public Company (){
 		super();
@@ -109,18 +112,10 @@ public class Company {
 		this.webPage = webPage;
 	}
 	
-	
 
-	/*public List<Customer> getCustomers() {
-		return customers;
+	public long getId() {
+		return id;
 	}
-
-
-
-	public void setCustomers(List<Customer> customers) {
-		this.customers = customers;
-	}*/
-
 
 
 	@Override
