@@ -52,7 +52,6 @@ public class CRMejb {
 		MyOrder testiOrder = new MyOrder();
 		testiOrder.setSalesPerson("Minttu Myyjä");
 		testiOrder.setCompany(testiCompany);
-
 		testiOrder.setDeliveryPlace("Helsinki");
 		testiOrder.setDeliveryDate("1.12.2016");
 		em.persist(testiOrder);
@@ -75,7 +74,7 @@ public class CRMejb {
 		testituote2.setOrder(testiOrder2);
 		testituote2.setPrice(66.0);
 		em.persist(testituote2);
-		 
+ 
 		
 	}
 	
@@ -198,6 +197,23 @@ public class CRMejb {
 		            System.out.println(o.getDeliveryDate());
 				}
 		return orders;
+	}
+	
+	//tilaukset toimituspaikan mukaan
+	public List<MyOrder> getOrdersByPlace(String place){
+		List<MyOrder> orders = null; 
+		
+		orders = em.createNamedQuery("searchOrdersByPlace").setParameter("place", place).getResultList();
+		// testing
+		System.out.println("***********searchOrdersByPlace  ********** ");
+				for (MyOrder o : orders) {
+		            System.out.println(o.getId());
+		            System.out.println(o.getSalesPerson());
+		            System.out.println(o.getDeliveryDate());
+		            System.out.println(o.getDeliveryPlace());
+				}
+		return orders;
+		
 	}
 	
 
