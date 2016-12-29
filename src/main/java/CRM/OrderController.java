@@ -58,7 +58,10 @@ public class OrderController {
 		return (ArrayList<MyOrder>) crmEjb.getOrdersByCompany(companyId);
 	}
 	
-	
+	//tilaukset tilauspäivän mukaan
+	public  ArrayList<MyOrder> listOrdersByDate(String date) {
+		return (ArrayList<MyOrder>) crmEjb.getOrdersByDate(date);
+	}
 	
 
 	public void initializeMyOrder() {
