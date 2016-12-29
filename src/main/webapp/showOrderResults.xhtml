@@ -13,12 +13,17 @@
 
 <p>Butterfly CRM</p>
 
-<h:form id="mainform">
-<h3>Order Search</h3>
+<h3>Search Results</h3>
 
-   Company Id: <h:inputText id="keyword" value="#{company.id}"></h:inputText>
-    <h:commandButton id="search" value="Search" action="orderController.listOrdersByCompany()"></h:commandButton>
-</h:form>
+
+<h:dataTable id="products" value="#{orderController.listOrdersByCompany(company.id)}" var="product">
+    <h:column>
+        <f:facet name="header">
+            <h:outputText value="Product Name"></h:outputText>
+        </f:facet>
+        <h:outputText value="#{product.name}"></h:outputText>
+    </h:column>
+</h:dataTable>
 
 </h:body>
 
