@@ -75,7 +75,13 @@ public class OrderObjectController {
 		return crmEjb.getOrderObjectsByDeliveryPlace(deliveryPlace).toString();
 	}
 	
+	public String searchByOrderDeliveryDate(String date){
+		return crmEjb.getOrderObjectsByDate(date).toString();
+	}
 	
+	public String searchByOrderCustomer(long customerId){
+		return crmEjb.getOrderObjectsByCustomer(customerId).toString();
+	}
 	
 
 	public String initializeOrderObject() {

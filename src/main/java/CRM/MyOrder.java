@@ -24,6 +24,17 @@ public class MyOrder implements Serializable {
     private Long id;
     
     @ManyToOne
+    private Customer customer;
+    
+    public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	@ManyToOne
 	private Company company;
     
     private enum state{
@@ -64,14 +75,14 @@ public class MyOrder implements Serializable {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+	
 
 	@Override
 	public String toString() {
-		return "MyOrder [id=" + id + ", company=" + company + ", salesPerson="
-				+ salesPerson + "]";
+		return "MyOrder [id=" + id + ", customer=" + customer + ", company="
+				+ company + ", salesPerson=" + salesPerson + ", deliveryDate="
+				+ deliveryDate + ", deliveryPlace=" + deliveryPlace + "]";
 	}
-
-	
 
 	public String getDeliveryPlace() {
 		return deliveryPlace;
