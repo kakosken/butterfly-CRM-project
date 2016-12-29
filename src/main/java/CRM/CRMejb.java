@@ -1,6 +1,5 @@
 package CRM;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -241,6 +240,16 @@ public class CRMejb {
 		return tuloslista;
 	}
 	
+/*	public List<OrderObject> getOrderObjectsByOrderDate(Date date) {
+		//Haetaan tuotteita tuotteen tilauksen päivän perusteella
+		TypedQuery<OrderObject> query = em.createQuery(
+		"SELECT o FROM OrderObject o WHERE o.order.deliveryDate LIKE :date", OrderObject.class);
+		 List<OrderObject> tuloslista = query.setParameter("date", date).getResultList();
+		
+		return tuloslista;
+	}
+	*/
+	
 	//tallentaa yrityksen tiedot
 	public void saveCompany(Company company) {
 		try {
@@ -260,7 +269,5 @@ public class CRMejb {
 
 	}
 
-
-	
 
 }
