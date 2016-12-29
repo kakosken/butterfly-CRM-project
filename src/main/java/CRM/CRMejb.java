@@ -52,7 +52,7 @@ public class CRMejb {
 		MyOrder testiOrder = new MyOrder();
 		testiOrder.setSalesPerson("Minttu Myyjä");
 		testiOrder.setCompany(testiCompany);
-
+		testiOrder.setCustomer(testiCustomer);
 		testiOrder.setDeliveryPlace("Helsinki");
 		testiOrder.setDeliveryDate("1.12.2016");
 		em.persist(testiOrder);
@@ -61,6 +61,7 @@ public class CRMejb {
 		testiOrder2.setSalesPerson("Matti Myyntimies");
 		testiOrder2.setCompany(testiCompany);
 		testiOrder2.setDeliveryPlace("Muumilaakso");
+		testiOrder2.setCustomer(testiCustomer2);
 		testiOrder2.setDeliveryDate("24.12.2016");
 		em.persist(testiOrder2);
 		
@@ -251,15 +252,27 @@ public class CRMejb {
 		return tuloslista;
 	}
 	
-/*	public List<OrderObject> getOrderObjectsByOrderDate(Date date) {
-		//Haetaan tuotteita tuotteen tilauksen päivän perusteella
+	@SuppressWarnings("unchecked")
+	public List<OrderObject> getOrderObjectsByDate(String date) {
+		//Haetaan tuotteita tuotteen tilauksen toimituspäivämäärän  mukaan
 		TypedQuery<OrderObject> query = em.createQuery(
-		"SELECT o FROM OrderObject o WHERE o.order.deliveryDate LIKE :date", OrderObject.class);
-		 List<OrderObject> tuloslista = query.setParameter("date", date).getResultList();
-		
+		        "SELECT o FROM OrderObject o WHERE o.order.deliveryDate LIKE :date", OrderObject.class);
+		    List<OrderObject> tuloslista = query.setParameter("date", date).getResultList();
+
 		return tuloslista;
 	}
-	*/
+	
+	@SuppressWarnings("unchecked")
+	public List<OrderObject> getOrderObjectsByCustomer(long customerId) {
+		//Haetaan tuotteita tuotteen tilauksen asiakkaan mukaan
+		
+		TypedQuery<OrderObject> query = em.createQuery(
+		        "SELECT o FROM OrderObject o WHERE o.order.customer.id LIKE :id", OrderObject.class);
+		    List<OrderObject> tuloslista = query.setParameter("id", customerId).getResultList();
+
+		return tuloslista;
+	}
+
 	
 	//tallentaa yrityksen tiedot
 	public void saveCompany(Company company) {
