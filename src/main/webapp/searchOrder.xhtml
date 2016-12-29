@@ -21,7 +21,7 @@
 </h:form>
 
 <h3>Kaikki tilaukset, ilman kriteereitä</h3>
-<h:dataTable id="products" value="#{orderController.listOrders}" var="product">
+<h:dataTable id="products" value="#{orderController.listOrders()}" var="product">
     <h:column>
         <f:facet name="header">
             <h:outputText value="Product Name"></h:outputText>
