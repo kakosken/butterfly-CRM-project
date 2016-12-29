@@ -52,11 +52,13 @@ public class CRMejb {
 		MyOrder testiOrder = new MyOrder();
 		testiOrder.setSalesPerson("Minttu Myyjä");
 		testiOrder.setCompany(testiCompany);
+		testiOrder.setDeliveryPlace("Helsinki");
 		em.persist(testiOrder);
 		
 		MyOrder testiOrder2 = new MyOrder();
 		testiOrder2.setSalesPerson("Matti Myyntimies");
 		testiOrder2.setCompany(testiCompany);
+		testiOrder2.setDeliveryPlace("Muumilaakso");
 		em.persist(testiOrder2);
 		
 		OrderObject testituote = new OrderObject();
@@ -66,9 +68,9 @@ public class CRMejb {
 		em.persist(testituote);
 		
 		OrderObject testituote2 = new OrderObject();
-		testituote.setName("testituote2");
-		testituote.setOrder(testiOrder2);
-		testituote.setPrice(66.0);
+		testituote2.setName("testituote2");
+		testituote2.setOrder(testiOrder2);
+		testituote2.setPrice(66.0);
 		em.persist(testituote2);
 		 
 		
@@ -219,6 +221,16 @@ public class CRMejb {
 		TypedQuery<OrderObject> query = em.createQuery(
 		        "SELECT o FROM OrderObject o WHERE o.order.company.id LIKE :id", OrderObject.class);
 		    List<OrderObject> tuloslista = query.setParameter("id", companyId).getResultList();
+
+		return tuloslista;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<OrderObject> getOrderObjectsByDeliveryPlace(String deliveryPlace) {
+		//Haetaan tuotteita tuotteen tilauksen toimituspaikan mukaan
+		TypedQuery<OrderObject> query = em.createQuery(
+		        "SELECT o FROM OrderObject o WHERE o.order.deliveryPlace LIKE :place", OrderObject.class);
+		    List<OrderObject> tuloslista = query.setParameter("place", deliveryPlace).getResultList();
 
 		return tuloslista;
 	}
