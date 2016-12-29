@@ -23,7 +23,17 @@ public class Account implements Serializable{
 	 
 	 private String name;
 	 private String userName;
-	 private String password; 
+	 public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	private String password; 
 	 private String email;
 	 private enum Role { 
 			ADMINISTRATOR, SALESPERSON, CUSTOMERSERVANT;
@@ -68,11 +78,16 @@ public class Account implements Serializable{
 		this.password = password;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Account [id=" + id + ", name=" + name + ", userName="
-				+ userName + ", password=" + password + "]";
+				+ userName + ", password=" + password + ", email=" + email
+				+ "]";
 	}
+
+
 	 
 	 
 
