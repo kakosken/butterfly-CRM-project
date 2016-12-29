@@ -2,7 +2,6 @@ package CRM;
 
 /* Terhi Järvenpää */
 import java.io.Serializable;
-import java.sql.Date;
 
 import javax.persistence.*;
 import javax.faces.bean.ManagedBean;
@@ -14,7 +13,8 @@ import javax.faces.bean.RequestScoped;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "searchAllOrders", query = "SELECT order from MyOrder order"),
-	@NamedQuery(name = "searchOrdersByCompany", query = "SELECT order FROM MyOrder order WHERE order.company.id=:yritysId")
+	@NamedQuery(name = "searchOrdersByCompany", query = "SELECT order FROM MyOrder order WHERE order.company.id=:yritysId"),
+	@NamedQuery(name = "searchOrdersByDate", query = "SELECT order FROM MyOrder order WHERE order.deliveryDate=:date")
 })
 public class MyOrder implements Serializable {
 
@@ -30,7 +30,7 @@ public class MyOrder implements Serializable {
     }; 
 
     private String salesPerson;
-    private Date deliveryDate;
+    private String deliveryDate;
     private String deliveryPlace;
 
 	public MyOrder() {
@@ -70,13 +70,7 @@ public class MyOrder implements Serializable {
 				+ salesPerson + "]";
 	}
 
-	public Date getDeliveryDate() {
-		return deliveryDate;
-	}
-
-	public void setDeliveryDate(Date deliveryDate) {
-		this.deliveryDate = deliveryDate;
-	}
+	
 
 	public String getDeliveryPlace() {
 		return deliveryPlace;
@@ -85,8 +79,15 @@ public class MyOrder implements Serializable {
 	public void setDeliveryPlace(String deliveryPlace) {
 		this.deliveryPlace = deliveryPlace;
 	}
-	
-	
 
+	public String getDeliveryDate() {
+		return deliveryDate;
+	}
+
+	public void setDeliveryDate(String deliveryDate) {
+		this.deliveryDate = deliveryDate;
+	}
+	
+	
 
 }

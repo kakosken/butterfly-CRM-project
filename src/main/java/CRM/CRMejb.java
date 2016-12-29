@@ -1,6 +1,6 @@
 package CRM;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -52,13 +52,16 @@ public class CRMejb {
 		MyOrder testiOrder = new MyOrder();
 		testiOrder.setSalesPerson("Minttu Myyjä");
 		testiOrder.setCompany(testiCompany);
+
 		testiOrder.setDeliveryPlace("Helsinki");
+		testiOrder.setDeliveryDate("1.12.2016");
 		em.persist(testiOrder);
 		
 		MyOrder testiOrder2 = new MyOrder();
 		testiOrder2.setSalesPerson("Matti Myyntimies");
 		testiOrder2.setCompany(testiCompany);
 		testiOrder2.setDeliveryPlace("Muumilaakso");
+		testiOrder2.setDeliveryDate("24.12.2016");
 		em.persist(testiOrder2);
 		
 		OrderObject testituote = new OrderObject();
@@ -72,6 +75,8 @@ public class CRMejb {
 		testituote2.setOrder(testiOrder2);
 		testituote2.setPrice(66.0);
 		em.persist(testituote2);
+		
+		getOrdersByDate("1.12.2016");
 		 
 		
 	}
@@ -182,7 +187,20 @@ public class CRMejb {
 		
 	}
 	
-
+	//tilauksen päivämäärän mukaan
+	public List<MyOrder> getOrdersByDate(String date) {
+		List<MyOrder> orders = null; 
+		
+		orders = em.createNamedQuery("searchOrdersByDate").setParameter("date", date).getResultList();
+		// testing
+		System.out.println("***********searchOrdersByDate  ********** ");
+				for (MyOrder o : orders) {
+		            System.out.println(o.getId());
+		            System.out.println(o.getSalesPerson());
+		            System.out.println(o.getDeliveryDate());
+				}
+		return orders;
+	}
 	
 
 	
@@ -263,8 +281,6 @@ public class CRMejb {
 		return companies;
 
 	}
-
-
 
 
 }
