@@ -75,8 +75,6 @@ public class CRMejb {
 		testituote2.setOrder(testiOrder2);
 		testituote2.setPrice(66.0);
 		em.persist(testituote2);
-		
-		getOrdersByDate("1.12.2016");
 		 
 		
 	}
