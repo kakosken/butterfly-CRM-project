@@ -14,37 +14,37 @@
 <p>Butterfly CRM</p>
 
 <h:form id="mainform">
-		<h4>Käyttäjätilit ja niiden hallinta</h4>
+		<h4>Asiakastilit ja niiden hallinta</h4>
 		
 		<h:dataTable styleClass="data" cellspacing="0" cellpadding="0"
-			border="0" rowClasses="odd,even" value="#{accountController.accounts}"
+			border="0" rowClasses="odd,even" value="#{customerController.customers}"
 			var="t">
 			<h:column headerstyleClass="first">
 				<f:facet name="header">Name</f:facet>
                  #{t.name}
             </h:column>
+      <!--       <h:column headerstyleClass="first">
+				<f:facet name="header">Email</f:facet>
+               #{t.email}  
+            </h:column>  -->
             <h:column headerstyleClass="first">
 				<f:facet name="header">Käyttäjänimi</f:facet>
 					#{t.userName}
             </h:column>
-      	   <h:column headerstyleClass="first">
-				<f:facet name="header">Tilin hallinta</f:facet>
-                    <h:commandLink action="#{accountController.deleteAccount(t)}" value="Poista käyttäjä" />
+      <!--   <h:column headerstyleClass="first">
+				<f:facet name="header">Ostoskoriin</f:facet>
+                    <h:commandLink action="#{tuoteController.addCart(t)}" value="Lisää" />
             </h:column>
-        
+        -->    
             
 		</h:dataTable>
 		
 		<table>
 			<tr>
-				<td><h:commandButton action="#{accountController.init}"
-						value="lataa olemassaolevat käyttäjätilit" /></td>
-
+				<td><h:commandButton action="#{customerController.initialize}"
+						value="lataa asiakkaiden testaustiedot" /></td>
 		</tr>
 		</table>
-		
-		
-		<h:commandButton action="tuotteet" value="tuotteet-sivulle"/>
 
 
 		
