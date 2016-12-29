@@ -14,7 +14,8 @@ import javax.faces.bean.RequestScoped;
 @NamedQueries({
 	@NamedQuery(name = "searchAllOrders", query = "SELECT order from MyOrder order"),
 	@NamedQuery(name = "searchOrdersByCompany", query = "SELECT order FROM MyOrder order WHERE order.company.id=:yritysId"),
-	@NamedQuery(name = "searchOrdersByDate", query = "SELECT order FROM MyOrder order WHERE order.deliveryDate=:date")
+	@NamedQuery(name = "searchOrdersByDate", query = "SELECT order FROM MyOrder order WHERE order.deliveryDate=:date"),
+	@NamedQuery(name = "searchOrdersByPlace", query = "SELECT order FROM MyOrder order WHERE order.deliveryPlace=:place")
 })
 public class MyOrder implements Serializable {
 

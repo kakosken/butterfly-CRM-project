@@ -64,6 +64,12 @@ public class OrderController {
 	public  ArrayList<MyOrder> listOrdersByDate(String date) {
 		return (ArrayList<MyOrder>) crmEjb.getOrdersByDate(date);
 	}
+	
+	//tilaukset toimituspaikan mukaan
+	public  ArrayList<MyOrder> listOrdersByPlace(String place) {
+		return (ArrayList<MyOrder>) crmEjb.getOrdersByPlace(place);
+	}
+	
 /*	public String getOrdersByDate(String day,String month, String year){
 		public  String searchByOrderDate(String day, String month, String year) {
 			int d = 0;
