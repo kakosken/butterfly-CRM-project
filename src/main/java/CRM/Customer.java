@@ -26,6 +26,22 @@ public class Customer implements Serializable {
 	 @GeneratedValue(strategy = GenerationType.AUTO)
 	 private long id;
 	
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getSalesperson() {
+		return salesperson;
+	}
+
+	public void setSalesperson(String salesperson) {
+		this.salesperson = salesperson;
+	}
+
 	@ManyToOne
 	private Company company;
 	
@@ -96,9 +112,13 @@ public class Customer implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", phone=" + phone
-				+ ", address=" + address + ", email=" + email + "]";
+		return "Customer [id=" + id + ", company=" + company + ", name=" + name
+				+ ", phone=" + phone + ", address=" + address + ", email="
+				+ email + ", country=" + country + ", salesperson="
+				+ salesperson + "]";
 	}
+
+
 	
 	
 }
