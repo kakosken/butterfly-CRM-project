@@ -77,7 +77,6 @@ public class CRMejb {
 		testituote2.setPrice(66.0);
 		em.persist(testituote2);
  
-		
 	}
 	
 
@@ -218,7 +217,23 @@ public class CRMejb {
 		
 	}
 	
-
+	//tilauksen asiakkaan mukaan
+	public List<MyOrder> getOrdersByCustomer(long customerId){
+		List<MyOrder> orders = null; 
+		
+		orders = em.createNamedQuery("searchOrdersByCustomer").setParameter("customerId", customerId).getResultList();
+		// testing
+		System.out.println("***********searchOrdersByCustomer  ********** ");
+				for (MyOrder o : orders) {
+		            System.out.println(o.getId());
+		            System.out.println(o.getSalesPerson());
+		            System.out.println(o.getDeliveryDate());
+		            System.out.println(o.getDeliveryPlace());
+		            System.out.println(o.getCustomer());
+				}
+		return orders;
+		
+	}
 	
 	@SuppressWarnings("unchecked")
 	public List<OrderObject> getOrderObjects() {

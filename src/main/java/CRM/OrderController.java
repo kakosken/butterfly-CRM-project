@@ -70,6 +70,11 @@ public class OrderController {
 		return (ArrayList<MyOrder>) crmEjb.getOrdersByPlace(place);
 	}
 	
+	//tilaukset asiakkaan mukaan
+		public  ArrayList<MyOrder> listOrdersByCustomer(long customerId) {
+			return (ArrayList<MyOrder>) crmEjb.getOrdersByCustomer(customerId);
+		}
+	
 /*	public String getOrdersByDate(String day,String month, String year){
 		public  String searchByOrderDate(String day, String month, String year) {
 			int d = 0;
