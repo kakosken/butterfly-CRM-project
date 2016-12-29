@@ -60,6 +60,10 @@ public class OrderController {
 		return (ArrayList<MyOrder>) crmEjb.getOrdersByCompany(companyId);
 	}
 	
+	//tilaukset tilauspäivän mukaan
+	public  ArrayList<MyOrder> listOrdersByDate(String date) {
+		return (ArrayList<MyOrder>) crmEjb.getOrdersByDate(date);
+	}
 /*	public String getOrdersByDate(String day,String month, String year){
 		public  String searchByOrderDate(String day, String month, String year) {
 			int d = 0;
@@ -82,6 +86,7 @@ public class OrderController {
 	}
 	
 	*/
+
 	
 
 	public void initializeMyOrder() {
