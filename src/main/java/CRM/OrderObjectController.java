@@ -71,6 +71,10 @@ public class OrderObjectController {
 		return crmEjb.getOrderObjectsByCompany(companyId).toString();
 	}
 	
+	public String searchByOrderDeliveryPlace(String deliveryPlace){
+		return crmEjb.getOrderObjectsByDeliveryPlace(deliveryPlace).toString();
+	}
+	
 	
 	
 
