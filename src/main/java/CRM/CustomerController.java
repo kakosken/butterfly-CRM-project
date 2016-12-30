@@ -38,7 +38,7 @@ public class CustomerController {
 		String viesti = "Uuden asiakkaan lisääminen onnistui "+ customer;
 		
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		//CRMejb.addAccount(account);
+		
 		crmEjb.addCustomer(customer);
 		
 		FacesMessage facesMessage = new FacesMessage(viesti);

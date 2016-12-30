@@ -125,6 +125,16 @@ public class CRMejb {
 		
 	}
 	
+	//Jos asiakkaan nimi löytyy jo tietokannasta, palautetaan true, jos ei löydy false
+	public boolean customerExist(String name){
+		
+		List<Customer> c = getCustomers();
+		for (int i=0; i < c.size(); i++){
+			if (c.get(i).getName().equals(name)) return true;
+		}
+		return false;
+	}
+	
 
 	public List<Customer> getCustomers(){
 		
