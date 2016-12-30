@@ -314,20 +314,20 @@ public class CRMejb {
 	
 	//tallentaa yrityksen tiedot
 	public void saveCompany(Company company) throws SQLException {
-		int result = 0;
+		/*int result = 0;
 		ResultSet rs;
 		rs = (ResultSet) em.createQuery("SELECT COUNT(company.businessId) AS result FROM Company company WHERE company.businessId=:businessId");
 		
 		rs.getInt(result);
 		
 		if (result == 0)
-		{
+		{*/
 			try {
 				em.persist(company);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		/*}
 		else
 			
 			{
@@ -335,7 +335,7 @@ public class CRMejb {
 			FacesMessage facesMessage = new FacesMessage(viesti);
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			facesContext.addMessage(null, facesMessage);
-			}
+			}*/
 		
 		}
 	
