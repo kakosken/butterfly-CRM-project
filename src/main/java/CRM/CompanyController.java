@@ -3,6 +3,7 @@ package CRM;
 /* Terhi Järvenpää */
 
 import java.awt.List;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.ejb.EJB;
@@ -30,19 +31,17 @@ public class CompanyController {
 		this.company = company;
 	}
 	
-	public String saveCompany() {
+	public String saveCompany() throws SQLException {
 		
 		String viesti = "Uuden yrityksen lisääminen onnistui "+ company;
 		
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		//CRMejb.addAccount(account);
 		crmEjb.saveCompany(company);
 		
 		FacesMessage facesMessage = new FacesMessage(viesti);
 		facesContext.addMessage(null, facesMessage);
 
 		return "index";
-		//return ("Company saved");
 	}
 	
 	

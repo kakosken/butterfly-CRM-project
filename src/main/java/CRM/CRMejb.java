@@ -1,11 +1,17 @@
 package CRM;
 
+import java.beans.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 
@@ -307,14 +313,31 @@ public class CRMejb {
 
 	
 	//tallentaa yrityksen tiedot
-	public void saveCompany(Company company) {
-		try {
-			em.persist(company);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void saveCompany(Company company) throws SQLException {
+		int result = 0;
+		ResultSet rs;
+		rs = (ResultSet) em.createQuery("SELECT COUNT(company.businessId) AS result FROM Company company WHERE company.businessId=:businessId");
 		
-	}
+		rs.getInt(result);
+		
+		if (result == 0)
+		{
+			try {
+				em.persist(company);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		else
+			
+			{
+			String viesti = "Yritys on jo olemassa";
+			FacesMessage facesMessage = new FacesMessage(viesti);
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			facesContext.addMessage(null, facesMessage);
+			}
+		
+		}
 	
 	@SuppressWarnings("unchecked")
 	public List<Company> getCompanies() {
