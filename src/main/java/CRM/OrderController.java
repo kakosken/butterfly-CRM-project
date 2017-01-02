@@ -3,6 +3,7 @@ package CRM;
 /* Terhi Järvenpää */
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.ejb.EJB;
@@ -22,7 +23,7 @@ public class OrderController {
 	@ManagedProperty(value = "#{myorder}")
 	private MyOrder order;
 	
-	private ArrayList<MyOrder> hakutulokset= new ArrayList<MyOrder>(); 
+	private List<MyOrder> hakutulokset= new ArrayList<MyOrder>(); 
 	public OrderController() {
 		// testidatan alustus?
 
@@ -49,34 +50,34 @@ public class OrderController {
 		return "index";
 	}
 	
-	public ArrayList<MyOrder> getHakutulokset(){ 
+	public List<MyOrder> getHakutulokset(){ 
 		return hakutulokset; 
 	}
 	
 	
 	//kaikki tilaukset kannasta
-	public  ArrayList<MyOrder> listOrders() {
-		hakutulokset = (ArrayList<MyOrder>) crmEjb.getOrders();
+	public  List<MyOrder> listOrders() {
+		hakutulokset = (List<MyOrder>) crmEjb.getOrders();
 		return null;
 	} 
 	
 	//yrityksen tilaukset kannasta
-	public  ArrayList<MyOrder> listOrdersByCompany(Long companyId) {
+	public  List<MyOrder> listOrdersByCompany(Long companyId) {
 		
-		hakutulokset= (ArrayList<MyOrder>) crmEjb.getOrdersByCompany(companyId);
+		hakutulokset= (List<MyOrder>) crmEjb.getOrdersByCompany(companyId);
 		return null;
 	}
 	
 	
 	//tilaukset tilauspäivän mukaan
-	public  ArrayList<MyOrder> listOrdersByDate(String date) {
-		hakutulokset = (ArrayList<MyOrder>) crmEjb.getOrdersByDate(date);
+	public  List<MyOrder> listOrdersByDate(String date) {
+		hakutulokset = (List<MyOrder>) crmEjb.getOrdersByDate(date);
 		return null;
 	}
 	
 	//tilaukset toimituspaikan mukaan
-	public  ArrayList<MyOrder> listOrdersByPlace(String place) {
-		hakutulokset = (ArrayList<MyOrder>) crmEjb.getOrdersByPlace(place);
+	public  List<MyOrder> listOrdersByPlace(String place) {
+		hakutulokset = (List<MyOrder>) crmEjb.getOrdersByPlace(place);
 		return null;
 	}
 	
