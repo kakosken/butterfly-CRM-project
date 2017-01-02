@@ -22,6 +22,7 @@ public class OrderController {
 	@ManagedProperty(value = "#{myorder}")
 	private MyOrder order;
 	
+	private ArrayList<MyOrder> hakutulokset= new ArrayList<MyOrder>(); 
 	public OrderController() {
 		// testidatan alustus?
 
@@ -48,30 +49,32 @@ public class OrderController {
 		return "index";
 	}
 	
+	public ArrayList<MyOrder> getHakutulokset(){ 
+		return hakutulokset; 
+	}
 	
 	
 	//kaikki tilaukset kannasta
-	public  ArrayList<MyOrder> listOrders() {
-		return (ArrayList<MyOrder>) crmEjb.getOrders();
+	public  void listOrders() {
+		hakutulokset = (ArrayList<MyOrder>) crmEjb.getOrders();
 	} 
 	
 	//yrityksen tilaukset kannasta
-	public  ArrayList<MyOrder> listOrdersByCompany(Long companyId) {
+	public  void listOrdersByCompany(Long companyId) {
 		
-		ArrayList<MyOrder> hakutulokset= (ArrayList<MyOrder>) crmEjb.getOrdersByCompany(companyId);
-		return hakutulokset;
+		hakutulokset= (ArrayList<MyOrder>) crmEjb.getOrdersByCompany(companyId);
 		
 	}
 	
 	
 	//tilaukset tilauspäivän mukaan
-	public  ArrayList<MyOrder> listOrdersByDate(String date) {
-		return (ArrayList<MyOrder>) crmEjb.getOrdersByDate(date);
+	public  void listOrdersByDate(String date) {
+		hakutulokset = (ArrayList<MyOrder>) crmEjb.getOrdersByDate(date);
 	}
 	
 	//tilaukset toimituspaikan mukaan
-	public  ArrayList<MyOrder> listOrdersByPlace(String place) {
-		return (ArrayList<MyOrder>) crmEjb.getOrdersByPlace(place);
+	public  void listOrdersByPlace(String place) {
+		hakutulokset = (ArrayList<MyOrder>) crmEjb.getOrdersByPlace(place);
 	}
 	
 /*	public String getOrdersByDate(String day,String month, String year){
