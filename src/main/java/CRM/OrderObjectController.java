@@ -2,7 +2,9 @@ package CRM;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 
 
@@ -26,6 +28,16 @@ public class OrderObjectController {
 	@ManagedProperty(value = "#{orderObject}")
 	private OrderObject orderObject;
 	
+	private List<OrderObject> hakutulokset = new ArrayList();
+	
+	public List<OrderObject> getHakutulokset() {
+		return hakutulokset;
+	}
+
+	public void setHakutulokset(ArrayList<OrderObject> hakutulokset) {
+		this.hakutulokset = hakutulokset;
+	}
+
 	public OrderObjectController(){
 		
 	}
@@ -55,36 +67,42 @@ public class OrderObjectController {
 	
 	
 	
-	public  List<OrderObject> getOrderObjects() {
-		return crmEjb.getOrderObjects();
+	public void getOrderObjects() {
+		hakutulokset = (List<OrderObject>) crmEjb.getOrderObjects();
 	}
 	
-	public  String searchByName(String name) {
-		return crmEjb.getOrderObjectsByName(name).toString();
+	public  void searchByName(String name) {
+		hakutulokset = (List<OrderObject>)crmEjb.getOrderObjectsByName(name);
 	}
 	
-	public  String searchByState(String state) {
-		return crmEjb.getOrderObjectsByState(state).toString();
+	public  void searchByState(String state) {
+		hakutulokset =  (List<OrderObject>)crmEjb.getOrderObjectsByState(state);
 	}
 	
-	public  String searchByCompanyId(long companyId) {
-		return crmEjb.getOrderObjectsByCompany(companyId).toString();
+	public  void searchByCompanyId(String companyId) {
+		try{
+			long id = Long.parseLong(companyId);
+			hakutulokset = (List<OrderObject>) crmEjb.getOrderObjectsByCompany(id);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 	
-	public String searchByOrderDeliveryPlace(String deliveryPlace){
-		return crmEjb.getOrderObjectsByDeliveryPlace(deliveryPlace).toString();
+	public void searchByOrderDeliveryPlace(String deliveryPlace){
+		hakutulokset = (List<OrderObject>) crmEjb.getOrderObjectsByDeliveryPlace(deliveryPlace);
 	}
 	
-	public String searchByOrderDeliveryDate(String date){
-		return crmEjb.getOrderObjectsByDate(date).toString();
+	public void searchByOrderDeliveryDate(String date){
+		hakutulokset = (List<OrderObject>)crmEjb.getOrderObjectsByDate(date);
 	}
 	
-	public String searchByOrderCustomer(long customerId){
-		return crmEjb.getOrderObjectsByCustomer(customerId).toString();
+	public void searchByOrderCustomer(long customerId){
+		hakutulokset = (List<OrderObject>)crmEjb.getOrderObjectsByCustomer(customerId);
 	}
 	
 
-	public String initializeOrderObject() {
+	public String initialize() {
 		crmEjb.init();
 		return "";
 	}
