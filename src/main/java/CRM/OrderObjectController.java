@@ -2,7 +2,9 @@ package CRM;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 
 
@@ -26,6 +28,16 @@ public class OrderObjectController {
 	@ManagedProperty(value = "#{orderObject}")
 	private OrderObject orderObject;
 	
+	private ArrayList<OrderObject> hakutulokset = new ArrayList();
+	
+	public ArrayList<OrderObject> getHakutulokset() {
+		return hakutulokset;
+	}
+
+	public void setHakutulokset(ArrayList<OrderObject> hakutulokset) {
+		this.hakutulokset = hakutulokset;
+	}
+
 	public OrderObjectController(){
 		
 	}
@@ -55,8 +67,8 @@ public class OrderObjectController {
 	
 	
 	
-	public  List<OrderObject> getOrderObjects() {
-		return crmEjb.getOrderObjects();
+	public void getOrderObjects() {
+		hakutulokset = (ArrayList<OrderObject>) crmEjb.getOrderObjects();
 	}
 	
 	public  String searchByName(String name) {
@@ -84,7 +96,7 @@ public class OrderObjectController {
 	}
 	
 
-	public String initializeOrderObject() {
+	public String initialize() {
 		crmEjb.init();
 		return "";
 	}
