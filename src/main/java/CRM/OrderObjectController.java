@@ -28,9 +28,9 @@ public class OrderObjectController {
 	@ManagedProperty(value = "#{orderObject}")
 	private OrderObject orderObject;
 	
-	private ArrayList<OrderObject> hakutulokset = new ArrayList();
+	private List<OrderObject> hakutulokset = new ArrayList();
 	
-	public ArrayList<OrderObject> getHakutulokset() {
+	public List<OrderObject> getHakutulokset() {
 		return hakutulokset;
 	}
 
@@ -68,31 +68,37 @@ public class OrderObjectController {
 	
 	
 	public void getOrderObjects() {
-		hakutulokset = (ArrayList<OrderObject>) crmEjb.getOrderObjects();
+		hakutulokset = (List<OrderObject>) crmEjb.getOrderObjects();
 	}
 	
-	public  String searchByName(String name) {
-		return crmEjb.getOrderObjectsByName(name).toString();
+	public  void searchByName(String name) {
+		hakutulokset = (List<OrderObject>)crmEjb.getOrderObjectsByName(name);
 	}
 	
-	public  String searchByState(String state) {
-		return crmEjb.getOrderObjectsByState(state).toString();
+	public  void searchByState(String state) {
+		hakutulokset =  (List<OrderObject>)crmEjb.getOrderObjectsByState(state);
 	}
 	
-	public  String searchByCompanyId(long companyId) {
-		return crmEjb.getOrderObjectsByCompany(companyId).toString();
+	public  void searchByCompanyId(String companyId) {
+		try{
+			long id = Long.parseLong(companyId);
+			hakutulokset = (List<OrderObject>) crmEjb.getOrderObjectsByCompany(id);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 	
-	public String searchByOrderDeliveryPlace(String deliveryPlace){
-		return crmEjb.getOrderObjectsByDeliveryPlace(deliveryPlace).toString();
+	public void searchByOrderDeliveryPlace(String deliveryPlace){
+		hakutulokset = (List<OrderObject>) crmEjb.getOrderObjectsByDeliveryPlace(deliveryPlace);
 	}
 	
-	public String searchByOrderDeliveryDate(String date){
-		return crmEjb.getOrderObjectsByDate(date).toString();
+	public void searchByOrderDeliveryDate(String date){
+		hakutulokset = (List<OrderObject>)crmEjb.getOrderObjectsByDate(date);
 	}
 	
-	public String searchByOrderCustomer(long customerId){
-		return crmEjb.getOrderObjectsByCustomer(customerId).toString();
+	public void searchByOrderCustomer(long customerId){
+		hakutulokset = (List<OrderObject>)crmEjb.getOrderObjectsByCustomer(customerId);
 	}
 	
 

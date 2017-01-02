@@ -9,7 +9,12 @@
 	<h:outputStylesheet library="css" name="tyylit.css" />
 </h:head>
 <h:body>
-<a href="index.xhtml">Käyttäjätili</a>
+<a href="index.xhtml">Käyttäjätili</a> | 
+<a href="customer.xhtml">Asiakas</a> |
+<a href="addcustomer.xhtml">Asiakkaan lisääminen</a> |
+<a href="searchOrderObjects.xhtml">Tuotteiden haku</a> |
+<a href="searchOrder.xhtml">Tilausten haku</a>|
+<a href="addaccount.xhtml">Käyttäjätilin lisääminen</a> 
 
 <p>Butterfly CRM</p>
 
@@ -36,12 +41,42 @@
         </f:facet>
         <h:outputText value="#{product.price}"></h:outputText>
     </h:column>
+        <h:column>
+        <f:facet name="header">
+            <h:outputText value="Yrityksen id"></h:outputText>
+        </f:facet>
+        <h:outputText value="#{product.order.company.id}"></h:outputText>
+    </h:column>
 </h:dataTable>
 
-<h:commandButton id="lataaTestiDataa" value="lataa testidataa tietokantaan" action="#{orderObjectController.initialize()}"/>
+<h:form>
+
+<h:commandButton id="lataaTestiDataa" value="lataa testidataa tietokantaan" action="#{orderObjectController.initialize}"/>
 
 <h:commandButton id="haeKaikki" value="Hae kaikki tuotteet" action="#{orderObjectController.getOrderObjects}"/>
+<br></br>
+<br>Tuotteiden haku hakukriteerin mukaan</br>
 
+<br>Etsi yrityksen id:n perusteella tuotteita: <h:inputText  binding="#{input1}"></h:inputText>
+    <h:commandButton value="Search" action="#{orderObjectController.searchByCompanyId(input1.value)}"></h:commandButton>
+</br>
+<br>Etsi tuotteen nimen perusteella: <h:inputText  binding="#{input2}"></h:inputText>
+    <h:commandButton  value="Search" action="#{orderObjectController.searchByName(input2.value)}"></h:commandButton>
+</br>
+
+<br>Etsi toimituspaikan perusteella tuotteita: <h:inputText  binding="#{input4}"></h:inputText>
+    <h:commandButton  value="Search" action="#{orderObjectController.searchByOrderDeliveryPlace(input4.value)}"></h:commandButton>
+</br>
+
+<br>Etsi asiakkaan id:n perusteella tuotteita: <h:inputText  binding="#{input5}"></h:inputText>
+    <h:commandButton  value="Search" action="#{orderObjectController.searchByOrderCustomer(input5.value)}"></h:commandButton>
+</br>
+
+<br>Etsi toimituspäivämäärän perusteella tuotteita: <h:inputText  binding="#{input6}"></h:inputText>
+    <h:commandButton  value="Search" action="#{orderObjectController.searchByOrderDeliveryDate(input6.value)}"></h:commandButton>
+</br>
+
+</h:form>
 </h:body>
 
 </html>
