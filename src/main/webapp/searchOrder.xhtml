@@ -17,19 +17,19 @@
 <h3>Order Search</h3>
 
    Company Id: <h:inputText id="id" value="#{myOrder.id}"></h:inputText>
-    <h:commandButton id="search_company" value="Search" action="orderController.listOrdersByCompany"></h:commandButton>
+    <h:commandButton id="search_company" value="Search" action="#{orderController.listOrdersByCompany}"></h:commandButton>
  </h:form>
  <h:form>
     Date: <h:inputText id="date" value="#{myOrder.deliveryDate}"></h:inputText>
-    <h:commandButton id="search_date" value="Search" action="orderController.listOrdersByDate"></h:commandButton>
+    <h:commandButton id="search_date" value="Search" action="#{orderController.listOrdersByDate}"></h:commandButton>
  </h:form>
  <h:form>
     Place: <h:inputText id="place" value="#{myOrder.deliveryPlace}"></h:inputText>
-    <h:commandButton id="search_place" value="Search" action="orderController.listOrdersByPlace"></h:commandButton>
+    <h:commandButton id="search_place" value="Search" action="#{orderController.listOrdersByPlace}"></h:commandButton>
  </h:form>
  <h:form>
     Hae kaikki:
-    <h:commandButton id="search_orders" value="Search" action="orderController.listOrders"></h:commandButton>
+    <h:commandButton id="search_orders" value="Search" action="#{orderController.listOrders}"></h:commandButton>
 </h:form>
 
 <h3>Kaikki tilaukset</h3>
