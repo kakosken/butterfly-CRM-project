@@ -55,26 +55,29 @@ public class OrderController {
 	
 	
 	//kaikki tilaukset kannasta
-	public  void listOrders() {
+	public  ArrayList<MyOrder> listOrders() {
 		hakutulokset = (ArrayList<MyOrder>) crmEjb.getOrders();
+		return null;
 	} 
 	
 	//yrityksen tilaukset kannasta
-	public  void listOrdersByCompany(Long companyId) {
+	public  ArrayList<MyOrder> listOrdersByCompany(Long companyId) {
 		
 		hakutulokset= (ArrayList<MyOrder>) crmEjb.getOrdersByCompany(companyId);
-		
+		return null;
 	}
 	
 	
 	//tilaukset tilauspäivän mukaan
-	public  void listOrdersByDate(String date) {
+	public  ArrayList<MyOrder> listOrdersByDate(String date) {
 		hakutulokset = (ArrayList<MyOrder>) crmEjb.getOrdersByDate(date);
+		return null;
 	}
 	
 	//tilaukset toimituspaikan mukaan
-	public  void listOrdersByPlace(String place) {
+	public  ArrayList<MyOrder> listOrdersByPlace(String place) {
 		hakutulokset = (ArrayList<MyOrder>) crmEjb.getOrdersByPlace(place);
+		return null;
 	}
 	
 /*	public String getOrdersByDate(String day,String month, String year){
