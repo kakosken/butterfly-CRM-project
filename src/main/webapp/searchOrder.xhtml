@@ -29,11 +29,11 @@
  </h:form>
  <h:form>
     Hae kaikki:
-    <h:commandButton id="search_orders" value="Search" action="orderController.getOrders"></h:commandButton>
+    <h:commandButton id="search_orders" value="Search" action="orderController.listOrders"></h:commandButton>
 </h:form>
 
 <h3>Kaikki tilaukset</h3>
-<h:dataTable id="products" value="#{orderController.getHakutulokset()}" var="product">
+<h:dataTable id="products" value="#{orderController.hakutulokset}" var="product">
     <h:column>
         <f:facet name="header">
             <h:outputText value="Product Name"></h:outputText>
